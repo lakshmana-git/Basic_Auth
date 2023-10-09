@@ -1,9 +1,10 @@
 import userModel from '../models/user.model.js'
 import bcrypt from 'bcryptjs'
+import { errorHandler } from '../utils/error.js'
 
 
 
-const signup = async(req,res)=>{
+const signup = async(req,res,next)=>{
          const {username,email,password} = req.body
        
          let BcrypPassord = bcrypt.hashSync(password,10)
@@ -14,7 +15,9 @@ const signup = async(req,res)=>{
                message:"user signed In"
             })
          }catch(error){
-           res.status(500).json(error.message)
+          
+           next(error)
+          //we can show custom error
          }
          
          //wait untill the action done

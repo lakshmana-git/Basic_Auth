@@ -28,3 +28,15 @@ app.listen(3000,()=>{
     console.log("Server Running on Port 3000!")
 }) 
 
+
+
+//middleware to show error
+app.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500
+    const message = err.message || 'Interal Server Error'
+    return res.status(statusCode).json({
+        success:false,
+        message,
+        statusCode 
+    })
+})
