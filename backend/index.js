@@ -2,6 +2,13 @@ import express from "express";
 import mongoose  from "mongoose";
 import dotenv from 'dotenv'
 import userRoutes from './routes/user.route.js'
+import signupRoutes from './routes/auth.route.js'
+
+
+//by default we cannot send json to server 
+//so we use app.use(express.json())
+//allow json data 
+ 
 dotenv.config();
 
 mongoose.connect(process.env.DB_URL).then(()=>{
@@ -11,10 +18,13 @@ mongoose.connect(process.env.DB_URL).then(()=>{
   });
 const app = express()
 
+app.use(express.json())
+
+
 app.use('/api/basicauth',userRoutes)
+app.use('/api/basicauth',signupRoutes)
 
-
-app.listen(3000,()=>{
+app.listen(3000,()=>{ 
     console.log("Server Running on Port 3000!")
 }) 
 
