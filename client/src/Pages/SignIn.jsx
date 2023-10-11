@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link,useNavigate} from 'react-router-dom'
 import { signInFailure,signInSuccess,signInStart } from '../redux/userSlice/userSlice'
 import { useDispatch ,useSelector} from 'react-redux'
-
+import { OAuth } from '../components/OAuth'
 export const SignIn = () => {
   const [formData,setFormData] = useState({
     username: '',
@@ -75,13 +75,8 @@ export const SignIn = () => {
               loading ? "Loading...":"Sign In"
              }</button>
              
-             <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
-              Google
-             </button>
              
-             <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
-              Sign In
-             </button>
+             <OAuth/>
          </form>
 
          <div className='flex gap-3 my-5'>
