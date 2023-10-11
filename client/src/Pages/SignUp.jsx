@@ -32,12 +32,16 @@ export const SignUp = () => {
           console.log(data);
           
           if (data.success === false) {
+            setIsLoading(false)
             setError(true)
             return;
           }
+          setIsLoading(false)
          
         } catch (error) {
           console.log(error)
+          
+
         }
          
   }
