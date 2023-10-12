@@ -1,21 +1,24 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useSelector } from 'react-redux'
+import { createAction } from '@reduxjs/toolkit'
+// import { Fragment } from 'react'
+// import { Disclosure, Menu, Transition } from '@headlessui/react'
+// import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export const Header = () => {
-  
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-]
+  const {createSlice} = useSelector((state)=>state.user)
+ 
+// const navigation = [
+//   { name: 'Dashboard', href: '#', current: true },
+//   { name: 'Team', href: '#', current: false },
+//   { name: 'Projects', href: '#', current: false },
+//   { name: 'Calendar', href: '#', current: false },
+// ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(' ')
+// }
   return (
     <>
     
@@ -26,7 +29,10 @@ function classNames(...classes) {
                   <ul className='flex gap-4'>
                   <Link to="/"> <li>Home</li> </Link>
                   <Link to="/about"><li>About</li> </Link>
-                  <Link to="/sign-in"><li>Sign In</li> </Link>
+                  <Link to="/profile">
+                    {createSlice ? (<img src={createSlice.profilePicture} alt="profile" className='h-7 w-7 object-cover rounded-full'/>):( <li>Sign In</li>)} 
+                  </Link>
+                   
                       
                       
                   </ul>
